@@ -1,0 +1,19 @@
+.title {
+	text-align: center;
+}
+
+.left-widget {
+	float: left;
+}
+
+.right-widget {
+	float: right;
+}
+
+.clear {
+	clear: all;
+}
+
+iframe {
+	border: 1px solid blue;
+}

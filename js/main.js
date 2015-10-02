@@ -99,7 +99,7 @@ function imageFromCanvasRed(){
 		data[i] = red.value; // add red
 	}
 
-	document.getElementById('color-red-val').innerHTML = red.value;
+	document.getElementById('color-red-val').innerHTML = "(Red = " + red.value + "/255)";
 
 	image.data = data;
 	context.putImageData(image,0,0);
@@ -121,7 +121,7 @@ function imageFromCanvasGreen(){
 		data[i+1] = green.value; // add green
 	}
 
-	document.getElementById('color-green-val').innerHTML = green.value;
+	document.getElementById('color-green-val').innerHTML = "(Green = " + green.value + "/255)";
 
 	image.data = data;
 	context.putImageData(image,0,0);
@@ -144,7 +144,7 @@ function imageFromCanvasBlue(){
 		data[i+2] = blue.value; // add blue
 	}
 
-	document.getElementById('color-blue-val').innerHTML = blue.value;
+	document.getElementById('color-blue-val').innerHTML = "(Blue = " + blue.value + "/255)";
 
 	image.data = data;
 	context.putImageData(image,0,0);
@@ -165,7 +165,7 @@ function imageFromCanvasOpacity(){
 	for (i=0; i < data.length; i+=4){
 		data[i+3] = opacity.value; // add opacity
 	}
-	document.getElementById('color-opacity-val').innerHTML = opacity.value;
+	document.getElementById('color-opacity-val').innerHTML = "(Opacity = " + opacity.value + "/255)";
 
 	image.data = data;
 	context.putImageData(image,0,0);
