@@ -1,0 +1,33 @@
+body {
+	background-color: #FFF;
+	color: #000;
+	font-family: sans-serif;
+	text-align: center;
+}
+
+.canvas	{
+	border: 1px solid #000;
+}
+
+.drop-area {
+	margin: 50px auto 20px;
+	width: 400px;
+	height: 160px;
+	border: 1px dashed #000;
+	text-align: center;
+	padding-top: 40px;
+}
+
+.link-area {
+	margin-top: 20px;
+}
+
+input[type='file'] {
+	border: 2px solid #EEE;
+	padding: 10px;
+}
+
+input[type='button'], input[type='text']  {
+	border: 2px solid #EEE;
+	padding: 5px;
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="title" content="Pixel Detector">
+    <meta name="description" content="This app helps locate different parts of the image in a pixel scale">
+	<title>Pixel Detector</title>
+	<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+	<h1>Pixel Dectector</h1>
+	<section>
+		<div id="drop-area" class="drop-area">
+			<p> Drop or Upload Image or Insert Link Here </p>
+			<input type="file" id="uploaded-file">
+			<div id="link-area" class="link-area">
+				<input type="text" placeholder="http://" id="submitted-link">
+				<input type="button" id="submit-link" value="Submit">
+			</div>
+		</div>
+	</section>
+	<canvas id="canvas" class="canvas" height="400" width="400"></canvas>
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>
