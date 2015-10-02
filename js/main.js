@@ -54,7 +54,12 @@ function initImageLoader(){
 		handleFile(file);
 	}
 
-	submittedLink.addEventListener()
+	submitLink.addEventListener('click', handleSubmittedLink);
+
+	function handleSubmittedLink(ev){
+		var link = submittedLink.files[0];
+		handleFile(link);
+	}
 }
 
 function handleFile(file){
