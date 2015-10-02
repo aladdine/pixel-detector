@@ -29,8 +29,16 @@
 		<span class="color-val" id="color-opacity-val"></span>
 	</div>	
 	<div class="filters">
-		<p id="number-of-pixels"></p>
+		<p>Number of pixels: <span id="number-of-pixels"></span></p>
 	</div>	
+    <div class="colors-count">
+		<input type="number" id="r" min="0" max="255" value="255">
+		<input type="number" id="g" min="0" max="255" value="255">
+		<input type="number" id="b" min="0" max="255" value="255">
+		<input type="number" id="op" min="0" max="255" value="255">
+		<p><span id="number-of-colored-pixels"></span></p>
+	</div>	
+
 </section>
 <script src="js/jquery-1.11.2.min.js"></script>
 <script src="js/main.js"></script>

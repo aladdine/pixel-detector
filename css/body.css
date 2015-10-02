@@ -1,5 +1,11 @@
-.title {
+body {
+	padding: 40px;
+	font-family: sans-serif;
+}
+
+.title, .description {
 	text-align: center;
+	margin-bottom: 40px;
 }
 
 .left-widget {

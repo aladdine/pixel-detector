@@ -1,4 +1,4 @@
-// DOM elemnts stored in variables
+// DOM elements associated with variables
 var canvas = document.getElementById('canvas'),
 	context = canvas.getContext('2d'),
 	uploadedFile = document.getElementById('uploaded-file'),
@@ -6,7 +6,12 @@ var canvas = document.getElementById('canvas'),
 	green = document.getElementById("color-green"),
 	blue = document.getElementById("color-blue"),
 	opacity = document.getElementById("color-opacity"),
-	pixelCount = document.getElementById("number-of-pixels");
+	pixelCount = document.getElementById("number-of-pixels"),
+	r = document.getElementById("r"), 
+	g = document.getElementById("g"),
+	b = document.getElementById("b"),
+	op = document.getElementById("op"),
+	coloredPixelCount = document.getElementById("number-of-colored-pixels");
 
 // draws horizontal and vertical grid delta apart
 function drawGrid(orientation,delta,gridColor) {
@@ -70,7 +75,7 @@ function handleFile(file){
 				drawGrid('horizontal',20,'blue');
 				drawGrid('vertical',20,'blue');
 				image = context.getImageData(0,0,ev.target.width,ev.target.height);
-				pixelCount.innerHTML = "Number of Pixels in Image: " image.data.length;			
+				pixelCount.innerHTML = image.data.length;			
 			}
        
 			tempImageStrore.onload = returnImage;
@@ -78,6 +83,12 @@ function handleFile(file){
 			green.onchange = imageFromCanvasGreen;
 			blue.onchange = imageFromCanvasBlue;
 			opacity.onchange = imageFromCanvasOpacity;
+			r.onchange = imageFromCanvas;
+			g.onchange = imageFromCanvas;
+			b.onchange = imageFromCanvas;
+			op.onchange = imageFromCanvas;
+
+			// note: filter functions above kept separate so they can be modified separately
 
 		tempImageStrore.src = event.target.result;	
 		}
@@ -87,14 +98,6 @@ function handleFile(file){
 
 function imageFromCanvasRed(){
 	var data = image.data;
-	console.log("Number of pixels = " + (data.length / 4));
-    var white = 0;
-	for (i=0; i < data.length; i+=4){
-		if ((data[i] == 0 && data[i+1]==0) && (data[i+2]==0 && data[i+3]==255)) {
-			white += 1;
-		}
-	}
-    console.log("Number of white pixels = " + white);
 
 	//add color effect in rgb scale (r,g,b,opacity) <=> (data[i],g,b,opacity)
 	for (i=0; i < data.length; i+=4){
@@ -105,17 +108,12 @@ function imageFromCanvasRed(){
 
 	image.data = data;
 	context.putImageData(image,0,0);
+	presentColors(image.data);
 }
 
 function imageFromCanvasGreen(){
 	var data = image.data;
-	console.log("Number of pixels = " + (data.length / 4));
-    var white = 0;
-	for (i=0; i < data.length; i+=4){
-		if ((data[i] == 0 && data[i+1]==0) && (data[i+2]==0 && data[i+3]==255)) {
-			white += 1;
-		}
-	}
+
 	//add color effect in rgb scale (r,g,b,opacity) <=> (r,data[i+1],b,opacity)
 	for (i=0; i < data.length; i+=4){
 		data[i+1] = green.value; // add green
@@ -125,18 +123,11 @@ function imageFromCanvasGreen(){
 
 	image.data = data;
 	context.putImageData(image,0,0);
+	presentColors(image.data);
 }
 
 function imageFromCanvasBlue(){
 	var data = image.data;
-    var white = 0;
-	for (i=0; i < data.length; i+=4){
-		if ((data[i] == 0 && data[i+1]==0) && (data[i+2]==0 && data[i+3]==255)) {
-			white += 1;
-		}
-	}
-    
-    console.log("Number of white pixels = " + white);
 
 	//add color effect in rgb scale (r,g,b,opacity) <=> (r,g,data[i+2],opacity)
 	for (i=0; i < data.length; i+=4){
@@ -147,24 +138,36 @@ function imageFromCanvasBlue(){
 
 	image.data = data;
 	context.putImageData(image,0,0);
+	presentColors(image.data);
 }
 
 function imageFromCanvasOpacity(){
 	var data = image.data;
-    var white = 0;
-	for (i=0; i < data.length; i+=4){
-		if ((data[i] == 0 && data[i+1]==0) && (data[i+2]==0 && data[i+3]==255)) {
-			white += 1;
-		}
-	}
-    console.log("Number of white pixels = " + white);
-
+    
 	//add color effect in rgb scale (r,g,b,opacity) <=> (r,g,b,data[i+3])
 	for (i=0; i < data.length; i+=4){
 		data[i+3] = opacity.value; // add opacity
 	}
 	document.getElementById('color-opacity-val').innerHTML = "(Opacity = " + opacity.value + "/255)";
-
 	image.data = data;
 	context.putImageData(image,0,0);
+	presentColors(image.data);
+}
+
+function imageFromCanvas(){
+	var data = image.data;
+	presentColors(data);
+}
+
+
+function presentColors(data){
+	var data = data;
+	var count = 0;
+	for (i=0; i < data.length; i+=4){
+		if ((data[i] == r.value && data[i+1]==g.value) && (data[i+2]==b.value && data[i+3]==op.value)) {
+			count += 1;
+		}
+	}
+    coloredPixelCount.innerHTML = "Number of pixels (" + r.value + "," + g.value + "," + b.value + "," + op.value + ") = ";
+    coloredPixelCount.innerHTML += count + " pixels";
 }
