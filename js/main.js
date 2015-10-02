@@ -30,12 +30,7 @@ function drawGrid(orientation,delta,gridColor) {
 window.addEventListener('DOMContentLoaded', initImageLoader);
 
 function initImageLoader(){
-	// removes last / from url
-	// var location = window.location.href.replace(/\/+$/,"");
-
-	// load image
-	// loadFile(location+'/images/sample.jpg');
-
+	
     
 	window.addEventListener('dragover', function(e){
 		e.preventDefault();
@@ -77,14 +72,9 @@ function handleFile(file){
 				drawGrid('horizontal',20,'red');
 				drawGrid('vertical',20,'blue');
 			}
-
 		tempImageStrore.src = event.target.result;	
-
-	}
-
+		}
 	reader.readAsDataURL(file);	
-		
-
 	}
 }
 
