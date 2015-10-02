@@ -87,25 +87,15 @@ function imageFromCanvas(){
 
     console.log("Number of white pixels = " + white);
 
-	//red effect in rgb scale
+	//add color effect in rgb scale (r,g,b,opacity) <=> (data[i],data[i+1],data[i+2],data[i+3])
 	for (i=0; i < data.length; i+=4){
 		data[i]=0;
+		data[i+1]=0;
+		data[i+2]=0;
+		data[i+3]=0;
 	}
 
-	//green effect in rgb scale
-	for (i=1; i < data.length; i+=4){
-		//data[i]=0;
-	}
-
-	// blue effect in rgb scale
-	for (i=2; i < data.length; i+=4){
-		//data[i]=0;
-	}
-
-	// opacity in rgb scale
-	for (i=3; i < data.length; i+=4){
-		//data[i]=0;
-	}
+	
 
 	image.data = data;
 	context.putImageData(image,0,0);
