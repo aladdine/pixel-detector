@@ -18,9 +18,27 @@ body {
 	padding-top: 40px;
 }
 
+.color-val {
+	margin-left: 30px;
+}
+
 input[type='file'] {
 	border: 2px solid #EEE;
 	padding: 10px;
 }
 
+.left-widget {
+	float: left;
+	border: 1px solid blue;
+
+}
+
+.right-widget {
+	float: right;
+	border: 1px solid green;
+}
+
+.clear {
+	clear: all;
+}
 
