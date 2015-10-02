@@ -1,6 +1,10 @@
 var canvas = document.getElementById('canvas'),
 	context = canvas.getContext('2d'),
-	uploadedFile = document.getElementById('uploaded-file');
+	uploadedFile = document.getElementById('uploaded-file'),
+	red = document.getElementById("color-red"),
+	green = document.getElementById("color-green"),
+	blue = document.getElementById("color-blue"),
+	opacity = document.getElementById("color-opacity");
 
 // draws horizontal and vertical grid
 function drawGrid(orientation,delta,gridColor) {
@@ -61,13 +65,17 @@ function handleFile(file){
 				canvas.height = ev.target.height;
 				canvas.width = ev.target.width;
 				context.drawImage(ev.target, 0, 0);
-				drawGrid('horizontal',20,'red');
+				drawGrid('horizontal',20,'blue');
 				drawGrid('vertical',20,'blue');
 				image = context.getImageData(0,0,ev.target.width,ev.target.height);
-				imageFromCanvas();
+				
 			}
-
+       
 			tempImageStrore.onload = returnImage;
+			red.onchange = imageFromCanvasRed;
+			green.onchange = imageFromCanvasGreen;
+			blue.onchange = imageFromCanvasBlue;
+			opacity.onchange = imageFromCanvasOpacity;
 
 		tempImageStrore.src = event.target.result;	
 		}
@@ -75,7 +83,7 @@ function handleFile(file){
 	}
 }
 
-function imageFromCanvas(){
+function imageFromCanvasRed(){
 	var data = image.data;
 	console.log("Number of pixels = " + (data.length / 4));
     var white = 0;
@@ -84,18 +92,72 @@ function imageFromCanvas(){
 			white += 1;
 		}
 	}
-
     console.log("Number of white pixels = " + white);
 
-	//add color effect in rgb scale (r,g,b,opacity) <=> (data[i],data[i+1],data[i+2],data[i+3])
+	//add color effect in rgb scale (r,g,b,opacity) <=> (data[i],g,b,opacity)
 	for (i=0; i < data.length; i+=4){
-		data[i]=0;
-		data[i+1]=0;
-		data[i+2]=0;
-		data[i+3]=0;
+		data[i] = red.value; // add red
 	}
 
-	
+	image.data = data;
+	context.putImageData(image,0,0);
+}
+
+function imageFromCanvasGreen(){
+	var data = image.data;
+	console.log("Number of pixels = " + (data.length / 4));
+    var white = 0;
+	for (i=0; i < data.length; i+=4){
+		if ((data[i] == 0 && data[i+1]==0) && (data[i+2]==0 && data[i+3]==255)) {
+			white += 1;
+		}
+	}
+    console.log("Number of white pixels = " + white);
+
+	//add color effect in rgb scale (r,g,b,opacity) <=> (r,data[i+1],b,opacity)
+	for (i=0; i < data.length; i+=4){
+		data[i+1] = green.value; // add green
+	}
+
+	image.data = data;
+	context.putImageData(image,0,0);
+}
+
+function imageFromCanvasBlue(){
+	var data = image.data;
+	console.log("Number of pixels = " + (data.length / 4));
+    var white = 0;
+	for (i=0; i < data.length; i+=4){
+		if ((data[i] == 0 && data[i+1]==0) && (data[i+2]==0 && data[i+3]==255)) {
+			white += 1;
+		}
+	}
+    console.log("Number of white pixels = " + white);
+
+	//add color effect in rgb scale (r,g,b,opacity) <=> (r,g,data[i+2],opacity)
+	for (i=0; i < data.length; i+=4){
+		data[i+2] = blue.value; // add blue
+	}
+
+	image.data = data;
+	context.putImageData(image,0,0);
+}
+
+function imageFromCanvasOpacity(){
+	var data = image.data;
+	console.log("Number of pixels = " + (data.length / 4));
+    var white = 0;
+	for (i=0; i < data.length; i+=4){
+		if ((data[i] == 0 && data[i+1]==0) && (data[i+2]==0 && data[i+3]==255)) {
+			white += 1;
+		}
+	}
+    console.log("Number of white pixels = " + white);
+
+	//add color effect in rgb scale (r,g,b,opacity) <=> (r,g,b,data[i+3])
+	for (i=0; i < data.length; i+=4){
+		data[i+3] = opacity.value; // add opacity
+	}
 
 	image.data = data;
 	context.putImageData(image,0,0);

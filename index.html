@@ -15,7 +15,32 @@
 			<input type="file" id="uploaded-file">
 		</div>
 	</section>
-	<canvas id="canvas" class="canvas"></canvas>
+	<section>
+		<canvas id="canvas" class="canvas"></canvas>
+	</section>
+	<section>
+		<div>
+			Red: 0 <input type="range" id="color-red" class="add-filter" min="0" max="255"> 255
+			<span id="color-red-val"></span>
+		</div>
+
+		<div>
+			Green: 0 <input type="range" id="color-green" class="add-filter" min="0" max="255"> 255
+			<span id="color-green-val"></span>
+		</div>
+
+		<div>
+			Blue: 0 <input type="range" id="color-blue" class="add-filter" min="0" max="255"> 255
+			<span id="color-blue-val"></span>
+		</div>
+
+		<div>
+			Opacity: 0 <input type="range" id="color-opacity" class="add-filter" min="0" max="255"> 255
+			<span id="color-opacity-val"></span>
+		</div>
+		
+		
+	</section>
 	<script src="js/jquery-1.11.2.min.js"></script>
 	<script src="js/main.js"></script>
 </body>
