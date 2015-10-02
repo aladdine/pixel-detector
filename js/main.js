@@ -1,12 +1,14 @@
+// DOM elemnts stored in variables
 var canvas = document.getElementById('canvas'),
 	context = canvas.getContext('2d'),
 	uploadedFile = document.getElementById('uploaded-file'),
 	red = document.getElementById("color-red"),
 	green = document.getElementById("color-green"),
 	blue = document.getElementById("color-blue"),
-	opacity = document.getElementById("color-opacity");
+	opacity = document.getElementById("color-opacity"),
+	pixelCount = document.getElementById("number-of-pixels");
 
-// draws horizontal and vertical grid
+// draws horizontal and vertical grid delta apart
 function drawGrid(orientation,delta,gridColor) {
 	var n = 0;
 	var delta = 20;
@@ -68,7 +70,7 @@ function handleFile(file){
 				drawGrid('horizontal',20,'blue');
 				drawGrid('vertical',20,'blue');
 				image = context.getImageData(0,0,ev.target.width,ev.target.height);
-				
+				pixelCount.innerHTML = "Number of Pixels in Image: " image.data.length;			
 			}
        
 			tempImageStrore.onload = returnImage;
@@ -114,8 +116,6 @@ function imageFromCanvasGreen(){
 			white += 1;
 		}
 	}
-    console.log("Number of white pixels = " + white);
-
 	//add color effect in rgb scale (r,g,b,opacity) <=> (r,data[i+1],b,opacity)
 	for (i=0; i < data.length; i+=4){
 		data[i+1] = green.value; // add green
@@ -129,7 +129,6 @@ function imageFromCanvasGreen(){
 
 function imageFromCanvasBlue(){
 	var data = image.data;
-	console.log("Number of pixels = " + (data.length / 4));
     var white = 0;
 	for (i=0; i < data.length; i+=4){
 		if ((data[i] == 0 && data[i+1]==0) && (data[i+2]==0 && data[i+3]==255)) {
@@ -152,7 +151,6 @@ function imageFromCanvasBlue(){
 
 function imageFromCanvasOpacity(){
 	var data = image.data;
-	console.log("Number of pixels = " + (data.length / 4));
     var white = 0;
 	for (i=0; i < data.length; i+=4){
 		if ((data[i] == 0 && data[i+1]==0) && (data[i+2]==0 && data[i+3]==255)) {
