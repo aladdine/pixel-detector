@@ -18,16 +18,9 @@ body {
 	padding-top: 40px;
 }
 
-.link-area {
-	margin-top: 20px;
-}
-
 input[type='file'] {
 	border: 2px solid #EEE;
 	padding: 10px;
 }
 
-input[type='button'], input[type='text']  {
-	border: 2px solid #EEE;
-	padding: 5px;
-}
+
