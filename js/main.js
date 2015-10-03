@@ -75,7 +75,8 @@ function handleFile(file){
 				drawGrid('horizontal',20,'blue');
 				drawGrid('vertical',20,'blue');
 				image = context.getImageData(0,0,ev.target.width,ev.target.height);
-				pixelCount.innerHTML = image.data.length;			
+				// every 4 subsequent values in the array	represent 1 pixel
+				pixelCount.innerHTML = (image.data.length/4); 		
 			}
        
 			tempImageStrore.onload = returnImage;
